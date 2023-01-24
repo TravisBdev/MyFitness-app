@@ -6,7 +6,7 @@ import { SelectedPage } from '@/shared/types'
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(SelectedPage.Home)
 
-  const [istopOfPage, setIsTopOfPage] = useState<boolean>(true)
+  const [isTopOfPage, setIsTopOfPage] = useState(true)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,9 +14,8 @@ function App() {
         setIsTopOfPage(true)
         setSelectedPage(SelectedPage.Home)
       }
-      if(window.scrollY !== 0) {
-        setIsTopOfPage(false)
-      }
+      if(window.scrollY !== 0) setIsTopOfPage(false)
+
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -28,6 +27,7 @@ function App() {
       <Navbar 
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
+        isTopOfPage={isTopOfPage}
       />
     </div>
   )
